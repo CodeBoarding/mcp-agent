@@ -1,0 +1,312 @@
+{
+  "description": "AI Agent Framework",
+  "components": [
+    {
+      "name": "Tool & Capability Registry",
+      "description": "Central repository for registering and discovering executable capabilities (activities, decorators, signals). It's fundamental for framework extensibility and dynamic tool utilization, allowing agents and workflows to find and use available functionalities.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.executor.task_registry.ActivityRegistry",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/executor/task_registry.py",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        },
+        {
+          "qualified_name": "mcp_agent.executor.decorator_registry.DecoratorRegistry",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/executor/decorator_registry.py",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        },
+        {
+          "qualified_name": "mcp_agent.executor.signal_registry.SignalRegistry",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/executor/signal_registry.py",
+          "reference_start_line": 3,
+          "reference_end_line": 29
+        }
+      ]
+    },
+    {
+      "name": "Application Server (MCPApp)",
+      "description": "The core application orchestrator and entry point. It's responsible for initializing and integrating all framework components, including the registries, configuration, and execution environment. Fundamental for bringing the entire system to life and managing its lifecycle.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.app",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/app.py",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        }
+      ]
+    },
+    {
+      "name": "Agent Core",
+      "description": "Defines the fundamental structure, behavior, and lifecycle of an AI agent. Agents interact with the Tool & Capability Registry to discover and invoke tools, enabling them to perform tasks and achieve goals. Fundamental as it embodies the \"agent\" concept of the framework.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.agents.agent",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/agents/agent.py",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        }
+      ]
+    },
+    {
+      "name": "Workflow Engine",
+      "description": "Manages the execution flow and orchestration of complex, multi-step tasks and processes. It leverages the Tool & Capability Registry to find and execute the necessary activities and signals as part of a defined workflow. Fundamental for enabling sophisticated, multi-stage AI processes.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.executor.executor",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/executor/executor.py",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        },
+        {
+          "qualified_name": "mcp_agent.executor.workflow",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/executor/workflow.py",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        }
+      ]
+    },
+    {
+      "name": "Tool Integration Layer",
+      "description": "Provides the mechanisms for adapting and registering external functionalities or custom code as usable \"tools\" within the framework. This layer is fundamental for extending the framework's operational scope and connecting it to diverse external services.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.tools",
+          "reference_file": "mcp_agent/tools/",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        }
+      ]
+    },
+    {
+      "name": "MCP Communication Layer",
+      "description": "Facilitates inter-service communication and capability discovery across different Multi-Component Protocol (MCP) instances. This is fundamental for building distributed AI agent systems, allowing agents to interact with remote services.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.mcp.mcp_aggregator",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/mcp/mcp_aggregator.py",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        },
+        {
+          "qualified_name": "mcp_agent.mcp.mcp_connection_manager",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/mcp/mcp_connection_manager.py",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        },
+        {
+          "qualified_name": "mcp_agent.mcp.mcp_server_registry",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/mcp/mcp_server_registry.py",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        }
+      ]
+    },
+    {
+      "name": "LLM Integration Layer",
+      "description": "Provides standardized interfaces and adapters for interacting with various Large Language Models (LLMs) from different providers. This layer is fundamental as it provides the core intelligence and reasoning capabilities for the AI agents and workflows.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.llm.augmented_llm",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/llm/augmented_llm.py",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        },
+        {
+          "qualified_name": "mcp_agent.workflows.llm.augmented_llm_anthropic",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/llm/augmented_llm_anthropic.py",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        },
+        {
+          "qualified_name": "mcp_agent.workflows.llm.augmented_llm_openai",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/llm/augmented_llm_openai.py",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        }
+      ]
+    },
+    {
+      "name": "Configuration Management",
+      "description": "Handles the loading, validation, and provision of application settings and configurations. It's fundamental for flexible deployment, customization, and environment-specific adjustments of the framework.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.config.Settings",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/config.py",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        },
+        {
+          "qualified_name": "mcp_agent.config.OpenAISettings",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/config.py",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        }
+      ]
+    },
+    {
+      "name": "Observability & Logging",
+      "description": "Provides mechanisms for monitoring, logging, and tracing events within the framework. This is fundamental for debugging, performance analysis, and understanding the complex behavior of AI agents and workflows.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.logging.listeners.EventListener",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/logging/listeners.py",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        },
+        {
+          "qualified_name": "mcp_agent.logging.transport.EventTransport",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/logging/transport.py",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        }
+      ]
+    },
+    {
+      "name": "Intent Classification/Routing",
+      "description": "Components responsible for understanding user intent or routing requests to appropriate agents/workflows based on input. This is fundamental for directing agent behavior, managing complex interactions, and enabling intelligent decision-making.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.intent_classifier",
+          "reference_file": "mcp_agent/workflows/intent_classifier/",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        },
+        {
+          "qualified_name": "mcp_agent.workflows.router",
+          "reference_file": "mcp_agent/workflows/router/",
+          "reference_start_line": 0,
+          "reference_end_line": 0
+        }
+      ]
+    }
+  ],
+  "components_relations": [
+    {
+      "relation": "initializes",
+      "src_name": "Application Server (MCPApp)",
+      "dst_name": "Tool & Capability Registry"
+    },
+    {
+      "relation": "provides capabilities to",
+      "src_name": "Tool & Capability Registry",
+      "dst_name": "Agent Core"
+    },
+    {
+      "relation": "provides capabilities to",
+      "src_name": "Tool & Capability Registry",
+      "dst_name": "Workflow Engine"
+    },
+    {
+      "relation": "registers capabilities with",
+      "src_name": "Tool Integration Layer",
+      "dst_name": "Tool & Capability Registry"
+    },
+    {
+      "relation": "interacts with",
+      "src_name": "Tool & Capability Registry",
+      "dst_name": "MCP Communication Layer"
+    },
+    {
+      "relation": "orchestrates",
+      "src_name": "Application Server (MCPApp)",
+      "dst_name": "Agent Core"
+    },
+    {
+      "relation": "orchestrates",
+      "src_name": "Application Server (MCPApp)",
+      "dst_name": "Workflow Engine"
+    },
+    {
+      "relation": "loads",
+      "src_name": "Application Server (MCPApp)",
+      "dst_name": "Configuration Management"
+    },
+    {
+      "relation": "integrates",
+      "src_name": "Application Server (MCPApp)",
+      "dst_name": "Observability & Logging"
+    },
+    {
+      "relation": "executes tasks via",
+      "src_name": "Agent Core",
+      "dst_name": "Workflow Engine"
+    },
+    {
+      "relation": "interacts with",
+      "src_name": "Agent Core",
+      "dst_name": "LLM Integration Layer"
+    },
+    {
+      "relation": "routes requests to",
+      "src_name": "Intent Classification/Routing",
+      "dst_name": "Agent Core"
+    },
+    {
+      "relation": "orchestrates",
+      "src_name": "Workflow Engine",
+      "dst_name": "Agent Core"
+    },
+    {
+      "relation": "interacts with",
+      "src_name": "Workflow Engine",
+      "dst_name": "LLM Integration Layer"
+    },
+    {
+      "relation": "utilizes",
+      "src_name": "Workflow Engine",
+      "dst_name": "Observability & Logging"
+    },
+    {
+      "relation": "may use",
+      "src_name": "Tool Integration Layer",
+      "dst_name": "LLM Integration Layer"
+    },
+    {
+      "relation": "communicates with",
+      "src_name": "MCP Communication Layer",
+      "dst_name": "Application Server (MCPApp)"
+    },
+    {
+      "relation": "provides services to",
+      "src_name": "LLM Integration Layer",
+      "dst_name": "Agent Core"
+    },
+    {
+      "relation": "provides services to",
+      "src_name": "LLM Integration Layer",
+      "dst_name": "Workflow Engine"
+    },
+    {
+      "relation": "configures",
+      "src_name": "Configuration Management",
+      "dst_name": "LLM Integration Layer"
+    },
+    {
+      "relation": "configures",
+      "src_name": "Configuration Management",
+      "dst_name": "Application Server (MCPApp)"
+    },
+    {
+      "relation": "receives data from",
+      "src_name": "Observability & Logging",
+      "dst_name": "Application Server (MCPApp)"
+    },
+    {
+      "relation": "receives data from",
+      "src_name": "Observability & Logging",
+      "dst_name": "Workflow Engine"
+    },
+    {
+      "relation": "routes requests to",
+      "src_name": "Intent Classification/Routing",
+      "dst_name": "Workflow Engine"
+    },
+    {
+      "relation": "uses",
+      "src_name": "Intent Classification/Routing",
+      "dst_name": "LLM Integration Layer"
+    }
+  ]
+}

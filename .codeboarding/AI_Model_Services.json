@@ -1,0 +1,133 @@
+{
+  "description": "This component serves as the central hub for all interactions with Large Language Models (LLMs) and text embedding models within the `mcp_agent` framework. Its primary purpose is to abstract away the complexities and provider-specific details of various AI models, offering a unified, extensible, and intelligent interface. This centralization promotes reusability, simplifies the integration of new models, and ensures optimal model selection based on performance and cost criteria.",
+  "components": [
+    {
+      "name": "AugmentedLLM",
+      "description": "This is the foundational abstract class that defines the unified interface for all Large Language Model (LLM) interactions within the framework. It extends the base `Agent` class and provides core capabilities such as prompt conversion, structured output generation, and tool calling, making it a versatile interface for various LLM-powered operations.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.llm.augmented_llm.AugmentedLLM",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/llm/augmented_llm.py",
+          "reference_start_line": 218,
+          "reference_end_line": 668
+        }
+      ]
+    },
+    {
+      "name": "ModelSelector",
+      "description": "This component is responsible for intelligently selecting the most appropriate LLM for a given request. It evaluates various factors such as cost, speed, and intelligence benchmarks of available models, ensuring efficient resource utilization and optimal performance for LLM calls.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.llm.llm_selector.ModelSelector",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/llm/llm_selector.py",
+          "reference_start_line": 96,
+          "reference_end_line": 413
+        }
+      ]
+    },
+    {
+      "name": "EmbeddingModel",
+      "description": "This abstract base class defines the standard interface for generating text embeddings. It allows for seamless integration of different embedding model providers, abstracting away their specific APIs and enabling consistent semantic understanding across the framework.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.embedding.embedding_base.EmbeddingModel",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/embedding/embedding_base.py",
+          "reference_start_line": 13,
+          "reference_end_line": 31
+        }
+      ]
+    },
+    {
+      "name": "Provider-Specific AugmentedLLM Implementations",
+      "description": "These concrete classes extend `AugmentedLLM` and provide the actual implementation details for interacting with specific LLM providers (e.g., Anthropic, OpenAI, Google, Bedrock, Azure, Ollama). They translate the unified `AugmentedLLM` interface calls into provider-specific API requests.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.llm.augmented_llm_anthropic.AnthropicAugmentedLLM",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/llm/augmented_llm_anthropic.py",
+          "reference_start_line": 110,
+          "reference_end_line": 722
+        },
+        {
+          "qualified_name": "mcp_agent.workflows.llm.augmented_llm_openai.OpenAIAugmentedLLM",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/llm/augmented_llm_openai.py",
+          "reference_start_line": 80,
+          "reference_end_line": 845
+        },
+        {
+          "qualified_name": "mcp_agent.workflows.llm.augmented_llm_google.GoogleAugmentedLLM",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/llm/augmented_llm_google.py",
+          "reference_start_line": 34,
+          "reference_end_line": 319
+        }
+      ]
+    },
+    {
+      "name": "Provider-Specific EmbeddingModel Implementations",
+      "description": "These concrete classes extend `EmbeddingModel` and provide the specific logic for generating embeddings using different providers (e.g., Cohere, OpenAI). They ensure that the framework can leverage various embedding services through a consistent interface.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.embedding.embedding_cohere.CohereEmbeddingModel",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/embedding/embedding_cohere.py",
+          "reference_start_line": 18,
+          "reference_end_line": 72
+        },
+        {
+          "qualified_name": "mcp_agent.workflows.embedding.embedding_openai.OpenAIEmbeddingModel",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/embedding/embedding_openai.py",
+          "reference_start_line": 18,
+          "reference_end_line": 70
+        }
+      ]
+    },
+    {
+      "name": "ProviderToMCPConverter",
+      "description": "These utility classes are crucial for the \"unified interface\" aspect of AI Model Services. They handle the conversion of data types, function schemas, and other parameters between the specific formats required by individual LLM providers and the internal, standardized format used by the `mcp_agent` framework. This enables consistent tool calling and structured output across different LLMs.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.llm.augmented_llm_anthropic.AnthropicMCPTypeConverter",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/llm/augmented_llm_anthropic.py",
+          "reference_start_line": 777,
+          "reference_end_line": 886
+        },
+        {
+          "qualified_name": "mcp_agent.workflows.llm.augmented_llm_openai.MCPOpenAITypeConverter",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/llm/augmented_llm_openai.py",
+          "reference_start_line": 949,
+          "reference_end_line": 1055
+        }
+      ]
+    }
+  ],
+  "components_relations": [
+    {
+      "relation": "extends",
+      "src_name": "Provider-Specific AugmentedLLM Implementations",
+      "dst_name": "AugmentedLLM"
+    },
+    {
+      "relation": "uses",
+      "src_name": "AugmentedLLM",
+      "dst_name": "ModelSelector"
+    },
+    {
+      "relation": "is used by",
+      "src_name": "ModelSelector",
+      "dst_name": "AugmentedLLM"
+    },
+    {
+      "relation": "extends",
+      "src_name": "Provider-Specific EmbeddingModel Implementations",
+      "dst_name": "EmbeddingModel"
+    },
+    {
+      "relation": "use",
+      "src_name": "Provider-Specific AugmentedLLM Implementations",
+      "dst_name": "ProviderToMCPConverter"
+    },
+    {
+      "relation": "is used by",
+      "src_name": "ProviderToMCPConverter",
+      "dst_name": "Provider-Specific AugmentedLLM Implementations"
+    }
+  ]
+}

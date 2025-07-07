@@ -1,0 +1,157 @@
+{
+  "description": "Overview of abstract components and their relationships within the MCP Agent application.",
+  "components": [
+    {
+      "name": "MCPApp",
+      "description": "The primary entry point and orchestrator for the MCP Agent application. It handles the initialization of the application context, loads configurations, registers core components like workflows, tasks, and decorators, and manages the overall application startup and shutdown. It acts as the central hub that brings all other core services together.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "MCPApp",
+          "reference_file": "not_specified.py",
+          "reference_start_line": 1,
+          "reference_end_line": 1
+        }
+      ]
+    },
+    {
+      "name": "Settings",
+      "description": "Defines and provides access to all application-wide configuration parameters. This includes settings for LLM providers, MCP communication, logging, and other operational aspects. It ensures that the application operates with a consistent and easily manageable set of parameters.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "Settings",
+          "reference_file": "not_specified.py",
+          "reference_start_line": 1,
+          "reference_end_line": 1
+        }
+      ]
+    },
+    {
+      "name": "ApplicationContext",
+      "description": "A singleton or globally accessible object that holds references to essential application services and resources, such as the configuration settings, various registries (workflows, tasks, decorators), and logging/telemetry instances. It provides a centralized way for different parts of the application to access shared resources without explicit dependency passing.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "ApplicationContext",
+          "reference_file": "not_specified.py",
+          "reference_start_line": 1,
+          "reference_end_line": 1
+        }
+      ]
+    },
+    {
+      "name": "WorkflowRegistry",
+      "description": "Manages the registration and retrieval of defined workflows within the application. Workflows represent the high-level orchestration logic for agents. This registry allows the application to dynamically discover and execute different workflow patterns.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "WorkflowRegistry",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/executor/workflow_registry.py",
+          "reference_start_line": 19,
+          "reference_end_line": 146
+        }
+      ]
+    },
+    {
+      "name": "ActivityRegistry",
+      "description": "Manages the registration and retrieval of individual activities or tasks that can be performed by agents or within workflows. These are the granular units of work that agents can execute.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "ActivityRegistry",
+          "reference_file": "not_specified.py",
+          "reference_start_line": 1,
+          "reference_end_line": 1
+        }
+      ]
+    },
+    {
+      "name": "DecoratorRegistry",
+      "description": "Manages the registration and application of decorators that can modify the behavior of workflows, tasks, or agents. This allows for cross-cutting concerns like logging, tracing, or error handling to be applied declaratively.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "DecoratorRegistry",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/executor/decorator_registry.py",
+          "reference_start_line": 1,
+          "reference_end_line": 1
+        }
+      ]
+    },
+    {
+      "name": "EventListener & Transport",
+      "description": "These components are part of the observability infrastructure. `EventListener` defines interfaces for processing application events (e.g., for logging, metrics), while `EventTransport` handles the actual delivery of these events to various destinations (console, file, HTTP). They are initialized as part of the global context setup.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "EventListener",
+          "reference_file": "not_specified.py",
+          "reference_start_line": 1,
+          "reference_end_line": 1
+        },
+        {
+          "qualified_name": "EventTransport",
+          "reference_file": "not_specified.py",
+          "reference_start_line": 1,
+          "reference_end_line": 1
+        }
+      ]
+    }
+  ],
+  "components_relations": [
+    {
+      "relation": "initializes and configures",
+      "src_name": "MCPApp",
+      "dst_name": "Settings"
+    },
+    {
+      "relation": "initializes and populates",
+      "src_name": "MCPApp",
+      "dst_name": "ApplicationContext"
+    },
+    {
+      "relation": "registers and manages",
+      "src_name": "MCPApp",
+      "dst_name": "WorkflowRegistry"
+    },
+    {
+      "relation": "registers and manages",
+      "src_name": "MCPApp",
+      "dst_name": "ActivityRegistry"
+    },
+    {
+      "relation": "registers and manages",
+      "src_name": "MCPApp",
+      "dst_name": "DecoratorRegistry"
+    },
+    {
+      "relation": "configures and integrates",
+      "src_name": "MCPApp",
+      "dst_name": "EventListener & Transport"
+    },
+    {
+      "relation": "provides access to",
+      "src_name": "ApplicationContext",
+      "dst_name": "Settings"
+    },
+    {
+      "relation": "provides access to",
+      "src_name": "ApplicationContext",
+      "dst_name": "WorkflowRegistry"
+    },
+    {
+      "relation": "provides access to",
+      "src_name": "ApplicationContext",
+      "dst_name": "ActivityRegistry"
+    },
+    {
+      "relation": "provides access to",
+      "src_name": "ApplicationContext",
+      "dst_name": "DecoratorRegistry"
+    },
+    {
+      "relation": "provides access to",
+      "src_name": "ApplicationContext",
+      "dst_name": "EventListener & Transport"
+    },
+    {
+      "relation": "configures",
+      "src_name": "Settings",
+      "dst_name": "EventListener & Transport"
+    }
+  ]
+}

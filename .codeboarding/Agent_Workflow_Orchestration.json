@@ -1,0 +1,248 @@
+{
+  "description": "This updated analysis addresses the feedback provided, focusing on correcting source references, adhering to naming conventions, clarifying relationship types and directions, and including previously missing component definitions.",
+  "components": [
+    {
+      "name": "Agent",
+      "description": "The foundational abstraction for any AI agent within the `mcp-agent` framework. It defines the basic structure and behavior of an agent, serving as a base class for more specialized agent types. Agents can interact with MCP servers, call local functions, and manage their lifecycle.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.agents.agent.Agent",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/agents/agent.py",
+          "reference_start_line": 56,
+          "reference_end_line": 934
+        }
+      ]
+    },
+    {
+      "name": "Executor",
+      "description": "Responsible for the runtime execution of tasks and workflows. It provides the environment and manages the lifecycle of agent operations, ensuring that tasks are processed efficiently. It defines abstract methods for executing single or multiple tasks, streaming results, and handling signals.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.executor.executor.Executor",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/executor/executor.py",
+          "reference_start_line": 52,
+          "reference_end_line": 239
+        }
+      ]
+    },
+    {
+      "name": "Workflow",
+      "description": "Defines the structure and flow of a sequence of tasks, enabling complex multi-step operations. It provides a blueprint for how agents should interact and progress through a series of actions, offering state management and lifecycle methods (run, pause, resume, cancel).",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.executor.workflow.Workflow",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/executor/workflow.py",
+          "reference_start_line": 71,
+          "reference_end_line": 528
+        }
+      ]
+    },
+    {
+      "name": "AugmentedLLM",
+      "description": "A specialized component that augments LLM capabilities by enabling tool calling, allowing agents to perform actions beyond simple text generation. It integrates with the `LLMSelector` to choose the optimal LLM for a given task and serves as a base for many other workflow patterns. It maintains a history of interactions and provides methods for generating text and structured outputs.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.llm.augmented_llm.AugmentedLLM",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/llm/augmented_llm.py",
+          "reference_start_line": 218,
+          "reference_end_line": 668
+        }
+      ]
+    },
+    {
+      "name": "Orchestrator",
+      "description": "A workflow pattern where a central LLM dynamically breaks down complex tasks into subtasks, delegates them to worker LLMs (which can be other `AugmentedLLM` instances or `Agent`s), and synthesizes their results. It operates in a loop until the main task is complete, supporting both full and iterative planning.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.orchestrator.orchestrator.Orchestrator",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/orchestrator/orchestrator.py",
+          "reference_start_line": 45,
+          "reference_end_line": 585
+        }
+      ]
+    },
+    {
+      "name": "ParallelLLM",
+      "description": "A workflow pattern that enables the concurrent execution of multiple tasks or sub-agents (fan-out) and programmatically aggregates their outputs (fan-in). This is useful for tasks requiring parallel processing for speed (sectioning) or multiple perspectives for higher confidence results (voting).",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.parallel.parallel_llm.ParallelLLM",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/parallel/parallel_llm.py",
+          "reference_start_line": 23,
+          "reference_end_line": 279
+        }
+      ]
+    },
+    {
+      "name": "IntentClassifier",
+      "description": "An abstract base class for classifying user input or system messages to determine the underlying intent. This classification is crucial for guiding the framework to select the correct subsequent actions, agents, or workflows. Concrete implementations can use LLMs, embedding models, or other classification methods.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.intent_classifier.intent_classifier_base.IntentClassifier",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/intent_classifier/intent_classifier_base.py",
+          "reference_start_line": 42,
+          "reference_end_line": 85
+        }
+      ]
+    },
+    {
+      "name": "LLMSelector",
+      "description": "Responsible for dynamically selecting the most appropriate LLM for a given task based on criteria such as cost, latency, or specific capabilities. This optimizes resource usage and performance within the framework by providing a mechanism to choose from available LLM providers and models.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.llm.llm_selector.LLMSelector",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/llm/llm_selector.py",
+          "reference_start_line": 24,
+          "reference_end_line": 109
+        }
+      ]
+    },
+    {
+      "name": "Router",
+      "description": "An abstract base class for directing incoming requests or tasks to the appropriate MCP server, agent, or function based on predefined rules or learned patterns. It acts as a traffic controller, ensuring efficient routing within the agent system and enabling separation of concerns.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.router.router_base.Router",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/router/router_base.py",
+          "reference_start_line": 63,
+          "reference_end_line": 275
+        }
+      ]
+    },
+    {
+      "name": "LLMIntentClassifier",
+      "description": "A concrete implementation of `IntentClassifier` that leverages an `AugmentedLLM` to determine user intent. It is particularly useful for flexible natural language understanding, detailed reasoning about classifications, and entity extraction.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.intent_classifier.intent_classifier_llm.LLMIntentClassifier",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/intent_classifier/intent_classifier_llm.py",
+          "reference_start_line": 63,
+          "reference_end_line": 243
+        }
+      ]
+    },
+    {
+      "name": "EmbeddingIntentClassifier",
+      "description": "A concrete implementation of `IntentClassifier` that uses embedding similarity for classification. It supports various embedding models and is effective for semantic similarity-based classification and example-based learning.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.intent_classifier.intent_classifier_embedding.EmbeddingIntentClassifier",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/intent_classifier/intent_classifier_embedding.py",
+          "reference_start_line": 32,
+          "reference_end_line": 177
+        }
+      ]
+    },
+    {
+      "name": "LLMRouter",
+      "description": "A concrete implementation of `Router` that uses an `AugmentedLLM` to make routing decisions. It can route requests to specific MCP servers, agents, or functions based on the LLM's understanding of the input and available categories.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.router.router_llm.LLMRouter",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/router/router_llm.py",
+          "reference_start_line": 81,
+          "reference_end_line": 373
+        }
+      ]
+    },
+    {
+      "name": "EmbeddingRouter",
+      "description": "A concrete implementation of `Router` that uses embedding similarity to route requests. It computes embeddings for incoming requests and compares them to precomputed embeddings of available categories (servers, agents, functions) to determine the best route.",
+      "referenced_source_code": [
+        {
+          "qualified_name": "mcp_agent.workflows.router.router_embedding.EmbeddingRouter",
+          "reference_file": "/mnt/e/StartUp/mcp-agent/src/mcp_agent/workflows/router/router_embedding.py",
+          "reference_start_line": 28,
+          "reference_end_line": 239
+        }
+      ]
+    },
+    {
+      "name": "EmbeddingModel",
+      "description": "Represents a model used for generating embeddings, typically for semantic similarity tasks.",
+      "referenced_source_code": []
+    }
+  ],
+  "components_relations": [
+    {
+      "relation": "uses",
+      "src_name": "AugmentedLLM",
+      "dst_name": "Agent"
+    },
+    {
+      "relation": "uses",
+      "src_name": "AugmentedLLM",
+      "dst_name": "LLMSelector"
+    },
+    {
+      "relation": "extends",
+      "src_name": "Orchestrator",
+      "dst_name": "AugmentedLLM"
+    },
+    {
+      "relation": "uses",
+      "src_name": "Orchestrator",
+      "dst_name": "Agent"
+    },
+    {
+      "relation": "extends",
+      "src_name": "ParallelLLM",
+      "dst_name": "AugmentedLLM"
+    },
+    {
+      "relation": "uses",
+      "src_name": "ParallelLLM",
+      "dst_name": "Agent"
+    },
+    {
+      "relation": "extends",
+      "src_name": "LLMIntentClassifier",
+      "dst_name": "IntentClassifier"
+    },
+    {
+      "relation": "uses",
+      "src_name": "LLMIntentClassifier",
+      "dst_name": "AugmentedLLM"
+    },
+    {
+      "relation": "extends",
+      "src_name": "EmbeddingIntentClassifier",
+      "dst_name": "IntentClassifier"
+    },
+    {
+      "relation": "uses",
+      "src_name": "EmbeddingIntentClassifier",
+      "dst_name": "EmbeddingModel"
+    },
+    {
+      "relation": "extends",
+      "src_name": "LLMRouter",
+      "dst_name": "Router"
+    },
+    {
+      "relation": "uses",
+      "src_name": "LLMRouter",
+      "dst_name": "AugmentedLLM"
+    },
+    {
+      "relation": "extends",
+      "src_name": "EmbeddingRouter",
+      "dst_name": "Router"
+    },
+    {
+      "relation": "uses",
+      "src_name": "EmbeddingRouter",
+      "dst_name": "EmbeddingModel"
+    },
+    {
+      "relation": "uses",
+      "src_name": "Executor",
+      "dst_name": "Workflow"
+    },
+    {
+      "relation": "uses",
+      "src_name": "Workflow",
+      "dst_name": "Executor"
+    }
+  ]
+}
