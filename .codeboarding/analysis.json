@@ -17,7 +17,8 @@
           "reference_start_line": 1,
           "reference_end_line": 1
         }
-      ]
+      ],
+      "can_expand": true
     },
     {
       "name": "Agent Execution & Workflow Engine",
@@ -53,7 +54,8 @@
           "reference_start_line": 1,
           "reference_end_line": 1
         }
-      ]
+      ],
+      "can_expand": true
     },
     {
       "name": "Agent Core & LLM Integration",
@@ -77,7 +79,8 @@
           "reference_start_line": 1,
           "reference_end_line": 1
         }
-      ]
+      ],
+      "can_expand": true
     },
     {
       "name": "MCP Service Integration",
@@ -101,7 +104,8 @@
           "reference_start_line": 1,
           "reference_end_line": 1
         }
-      ]
+      ],
+      "can_expand": true
     },
     {
       "name": "Agent Workflow Patterns",
@@ -137,7 +141,8 @@
           "reference_start_line": 1,
           "reference_end_line": 1
         }
-      ]
+      ],
+      "can_expand": true
     },
     {
       "name": "Human Interaction Layer",
@@ -155,7 +160,8 @@
           "reference_start_line": 1,
           "reference_end_line": 1
         }
-      ]
+      ],
+      "can_expand": true
     }
   ],
   "components_relations": [
